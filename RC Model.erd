@@ -1,0 +1,74 @@
+erdiagram RDModel
+notation = default
+
+entity Inventory{
+    ProductId key 
+}
+
+entity Customer{
+    CustomerID key
+    Email
+    Address
+    Payment
+
+}
+
+entity BackOrder{
+    BackOrderId key
+     TransactionId
+
+}
+
+entity Transaction{
+    TransactionId key
+    CustomerID
+    ProductId
+}
+
+entity Prospect{
+     ProspectID key
+    Email
+}
+
+entity Product{
+    ProductId key
+    ProductType
+    Stock
+    MinQuantity
+    ManufacturerID
+
+}
+
+entity Manufacturer{
+    ManufacturerID key
+    Products
+    Website
+
+}
+
+entity Invoice{
+    InvoiceId key
+    Customer ID 
+    Shipping Charge
+    Products Purchased
+}
+
+relationship ProductInventory {
+    Product[N] -> Inventory[1]
+}
+
+relationship CustomerInvoice {
+    Customer[1] -> Invoice[N]
+}
+
+relationship CustomerTransaction {
+    Customer[1] -> Transaction[N]
+}
+
+relationship BackOrderTransaction {
+    BackOrder[1] -> BackOrder[N]
+}
+
+relationship ManufacturerProduct {
+    Product[N] -> Manufacturer[1]
+}
